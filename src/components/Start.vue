@@ -2,7 +2,7 @@
   <div class="">
       <fundamentjumbo
         src="/static/intro_bg.jpg"
-        caption="DBÖ Annotations App"
+        caption="Corpus Vitrearum"
         subtitle=""
       >
       </fundamentjumbo>

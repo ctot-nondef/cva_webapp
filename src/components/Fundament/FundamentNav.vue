@@ -60,8 +60,8 @@
               <v-list-tile>
                 <router-link :to="{ name: 'start' }">
                   <div class="logo">
-                    <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;text-decoration-line: none!important;">DBÖ</h5>
-                    <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;text-decoration-line: none!important;">Annotations</h5>
+                    <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;text-decoration-line: none!important;">Corpus</h5>
+                    <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;text-decoration-line: none!important;">Vitrearum</h5>
                   </div>
                 </router-link>
               </v-list-tile>
@@ -87,8 +87,8 @@
                 <v-toolbar-title>
                   <router-link :to="{ name: 'start' }">
                     <div class="logo">
-                      <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;">DBÖ</h5>
-                      <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;">Annotations</h5>
+                      <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;">Corpus</h5>
+                      <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;">Vitrearum</h5>
                     </div>
                   </router-link>
                 </v-toolbar-title>
