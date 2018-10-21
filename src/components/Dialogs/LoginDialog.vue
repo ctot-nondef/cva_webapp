@@ -57,8 +57,8 @@ export default {
       this.closeDialog('loginDialog');
     },
     login() {
-      this.f('api_token_auth_create')({
-        data: {
+      this.f('postLogin')({
+        user: {
           username: this.username,
           password: this.password,
         },
