@@ -89,13 +89,13 @@ export default {
       'delete',
     ]),
     addstandort() {
-      if(this.cedits.place) this.cedits.place.forEach((el, idx, c) => {
+      if(this.newstandort.place) this.newstandort.place.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
-      if(this.cedits.creator) this.cedits.creator.forEach((el, idx, c) => {
+      if(this.newstandort.creator) this.newstandort.creator.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
-      if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
+      if(this.newstandort.images) this.newstandort.images.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
       this.post({ type: 'standort', body: this.newstandort }).then((res) => {

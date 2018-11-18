@@ -26,6 +26,40 @@
     </v-list>
     <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
     <input type="file" style="display: none"  ref="image"  accept="image/*"  @change="onFilePicked">
+    <v-list two-line>
+      <template v-for="(item, index) in standort.references">
+        <v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title v-html="item.ref"></v-list-tile-title>
+            <v-list-tile-sub-title v-html="item.pageno"></v-list-tile-sub-title>
+          </v-list-tile-content>
+          <v-btn fab dark small color="error" @click="removereference(index)">
+            <v-icon dark>delete</v-icon>
+          </v-btn>
+        </v-list-tile>
+      </template>
+    </v-list>
+    <v-text-field label="Reference" v-model='newreference.ref'></v-text-field>
+    <v-text-field label="PageNo" v-model='newreference.pageno'></v-text-field>
+    <v-btn fab dark small color="warning" @click="addreference()">
+      <v-icon dark>edit</v-icon>
+    </v-btn>
+    <v-list>
+      <template v-for="(item, index) in standort.comments">
+        <v-list-tile>
+          <v-list-tile-content>
+            <v-list-tile-title v-html="item"></v-list-tile-title>
+          </v-list-tile-content>
+          <v-btn fab dark small color="error" @click="removecomment(index)">
+            <v-icon dark>delete</v-icon>
+          </v-btn>
+        </v-list-tile>
+      </template>
+    </v-list>
+    <v-text-field label="Comment" v-model='newcomment'></v-text-field>
+    <v-btn fab dark small color="warning" @click="addcomment()">
+      <v-icon dark>edit</v-icon>
+    </v-btn>
   </div>
 </template>
 <script>
@@ -52,7 +86,9 @@ export default {
       url: '',
       imageName: '',
   		imageUrl: '',
-  		imageFile: ''
+  		imageFile: '',
+      newreference: {},
+      newcomment: '',
     };
   },
   watch: {
@@ -103,9 +139,28 @@ export default {
 		},
     removeimage(index) {
       this.standort.images.splice(index, 1);
-      console.log(this.standort);
       this.returnObject();
-    }
+    },
+    removereference(index) {
+      this.standort.references.splice(index, 1);
+      this.returnObject();
+    },
+    addreference() {
+      if(!this.standort.references) this.standort.references = [];
+      this.standort.references.push(this.newreference);
+      this.returnObject();
+      this.newreference = {};
+    },
+    removecomment(index) {
+      this.standort.comments.splice(index, 1);
+      this.returnObject();
+    },
+    addcomment() {
+      if(!this.standort.comments) this.standort.comments = [];
+      this.standort.comments.push(this.newcomment);
+      this.returnObject();
+      this.newcomment = '';
+    },
   },
 };
 </script>
