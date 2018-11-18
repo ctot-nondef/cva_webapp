@@ -8,19 +8,24 @@
     <v-text-field v-model="standort.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
     <v-text-field v-model="standort.endOfExistence" label="End of Existence" @input="returnObject()"></v-text-field>
     <v-textarea v-model="standort.description" label="Description" @input="returnObject()"></v-textarea>
-    <v-container fluid>
-      <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-        <img :src="imageUrl" height="150" v-if="imageUrl"/>
-        <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
-        <input
-          type="file"
-          style="display: none"
-          ref="image"
-          accept="image/*"
-          @change="onFilePicked"
-        >
-      </v-flex>
-    </v-container>
+    <v-list two-line>
+      <template v-for="(item, index) in standort.images">
+        <v-list-tile :key="item._id" avatar  @click="">
+          <v-list-tile-avatar>
+            <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path}`">
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title v-html="item.name"></v-list-tile-title>
+            <v-list-tile-sub-title v-html="item.path"></v-list-tile-sub-title>
+          </v-list-tile-content>
+          <v-btn fab dark small color="error" @click="removeimage(index)">
+            <v-icon dark>delete</v-icon>
+          </v-btn>
+        </v-list-tile>
+      </template>
+    </v-list>
+    <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+    <input type="file" style="display: none"  ref="image"  accept="image/*"  @change="onFilePicked">
   </div>
 </template>
 <script>
@@ -60,7 +65,7 @@ export default {
       this.$emit('input', this.standort);
     },
     pickFile () {
-                this.$refs.image.click ()
+      this.$refs.image.click ()
     },
 		onFilePicked (e) {
 			const files = e.target.files
@@ -82,7 +87,12 @@ export default {
                 'Content-Type': 'multipart/form-data'
               }
           }).then((res) => {
-            console.log(res);
+            if(!this.standort.images) this.standort.images = [];
+            this.standort.images.push(res.data);
+            this.returnObject();
+            this.imageName = '';
+            this.imageFile = '';
+            this.imageUrl = '';
           });
 				})
 			} else {
@@ -90,7 +100,12 @@ export default {
 				this.imageFile = ''
 				this.imageUrl = ''
 			}
-		}
+		},
+    removeimage(index) {
+      this.standort.images.splice(index, 1);
+      console.log(this.standort);
+      this.returnObject();
+    }
   },
 };
 </script>

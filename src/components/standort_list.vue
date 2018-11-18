@@ -139,7 +139,8 @@ export default {
         }),
         populate: JSON.stringify([
           {"path":"creator"},
-          {"path":"place"}
+          {"path":"place"},
+          {"path":"images"},
         ]),
       }).then((res) => {
         this.cedit = res.data[0];
@@ -154,6 +155,9 @@ export default {
           c[idx] = el._id;
         });
         if(this.cedits.creator) this.cedits.creator.forEach((el, idx, c) => {
+          c[idx] = el._id;
+        });
+        if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
         console.log(this.cedits);
