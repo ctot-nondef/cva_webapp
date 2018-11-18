@@ -3,8 +3,8 @@ import Router from 'vue-router';
 import App from '../components/App';
 import Start from '../components/Start';
 import Import from '../components/Import';
-import collections from '../components/collections';
-import collectionsingle from '../components/collectionsingle';
+import standorte from '../components/standorte';
+import standortsingle from '../components/standort_single';
 import inventorysingle from '../components/inventorysingle';
 import actors from '../components/actors';
 
@@ -38,17 +38,17 @@ export default new Router({
           },
         },
         {
-          path: 'collections',
-          name: 'collections',
+          path: 'standorte',
+          name: 'standorte',
           components: {
-            Content: collections,
+            Content: standorte,
           },
         },
         {
-          path: 'collections/:id',
-          name: 'collectionsingle',
+          path: 'standorte/:id',
+          name: 'standortsingle',
           components: {
-            Content: collectionsingle,
+            Content: standortsingle,
           },
         },
         {

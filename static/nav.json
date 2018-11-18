@@ -22,12 +22,12 @@
 				"items":""
 			},
 			{
-				"caption":"Collections",
+				"caption":"Standorte",
 				"arialabel":"",
-				"icon":"description",
+				"icon":"place",
 				"abstract":"",
 				"startpage":{
-					"name": "collections",
+					"name": "standorte",
 					"params": {
 						"lang": "en" }
 					},
