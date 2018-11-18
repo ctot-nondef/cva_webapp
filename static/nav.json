@@ -1,6 +1,6 @@
 {
 	"logo":"/static/fundament_logo.svg",
-	"title":"DBÖ Annotations",
+	"title":"CVA Datenbank",
 	"color":"primary",
 	"homestate":{
 		"name": "start",
@@ -34,12 +34,24 @@
 				"items":""
 			},
 			{
-				"caption":"Query",
+				"caption":"Personen",
 				"arialabel":"",
-				"icon":"search",
+				"icon":"person",
 				"abstract":"",
 				"startpage":{
-					"name": "query",
+					"name": "actors",
+					"params": {
+						"lang": "en" }
+					},
+				"items":""
+			},
+			{
+				"caption":"Thesaurus",
+				"arialabel":"",
+				"icon":"device_hub",
+				"abstract":"",
+				"startpage":{
+					"name": "schema",
 					"params": {
 						"lang": "en" }
 					},
