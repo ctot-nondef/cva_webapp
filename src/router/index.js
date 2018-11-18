@@ -5,6 +5,8 @@ import Start from '../components/Start';
 import Import from '../components/Import';
 import standorte from '../components/standorte';
 import standortsingle from '../components/standort_single';
+import fenster from '../components/fenster';
+import fenstersingle from '../components/fenster_single';
 import inventorysingle from '../components/inventorysingle';
 import actors from '../components/actors';
 
@@ -49,6 +51,20 @@ export default new Router({
           name: 'standortsingle',
           components: {
             Content: standortsingle,
+          },
+        },
+        {
+          path: 'fenster',
+          name: 'fenster',
+          components: {
+            Content: fenster,
+          },
+        },
+        {
+          path: 'fenster/:id',
+          name: 'fenstersingle',
+          components: {
+            Content: fenstersingle,
           },
         },
         {

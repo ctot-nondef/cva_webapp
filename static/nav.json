@@ -34,6 +34,18 @@
 				"items":""
 			},
 			{
+				"caption":"Fenster",
+				"arialabel":"",
+				"icon":"border_all",
+				"abstract":"",
+				"startpage":{
+					"name": "fenster",
+					"params": {
+						"lang": "en" }
+					},
+				"items":""
+			},
+			{
 				"caption":"Personen",
 				"arialabel":"",
 				"icon":"person",
