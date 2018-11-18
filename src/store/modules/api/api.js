@@ -27,7 +27,7 @@ export const request = (method, url, body, queryParameters, form, config) => {
   }
 }
 /*==========================================================
- *                    
+ *
  ==========================================================*/
 /**
  * API root. Returns JSON Object of Metadata and available Entities
@@ -448,7 +448,7 @@ export const getActorURL = function(parameters = {}) {
  * url: postActorURL
  * method: postActor_TYPE
  * raw_url: postActor_RAW_URL
- * @param actor - 
+ * @param actor -
  */
 export const postActor = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -579,7 +579,7 @@ export const getActorByIdURL = function(parameters = {}) {
  * method: postActorById_TYPE
  * raw_url: postActorById_RAW_URL
  * @param id - MongoDB document _id
- * @param actor - 
+ * @param actor -
  */
 export const postActorById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -788,7 +788,7 @@ export const getAssetrefURL = function(parameters = {}) {
  * url: postAssetrefURL
  * method: postAssetref_TYPE
  * raw_url: postAssetref_RAW_URL
- * @param assetref - 
+ * @param assetref -
  */
 export const postAssetref = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -919,7 +919,7 @@ export const getAssetrefByIdURL = function(parameters = {}) {
  * method: postAssetrefById_TYPE
  * raw_url: postAssetrefById_RAW_URL
  * @param id - MongoDB document _id
- * @param assetref - 
+ * @param assetref -
  */
 export const postAssetrefById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1128,7 +1128,7 @@ export const getAuthrecURL = function(parameters = {}) {
  * url: postAuthrecURL
  * method: postAuthrec_TYPE
  * raw_url: postAuthrec_RAW_URL
- * @param authrec - 
+ * @param authrec -
  */
 export const postAuthrec = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1259,7 +1259,7 @@ export const getAuthrecByIdURL = function(parameters = {}) {
  * method: postAuthrecById_TYPE
  * raw_url: postAuthrecById_RAW_URL
  * @param id - MongoDB document _id
- * @param authrec - 
+ * @param authrec -
  */
 export const postAuthrecById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1468,7 +1468,7 @@ export const getBibrefURL = function(parameters = {}) {
  * url: postBibrefURL
  * method: postBibref_TYPE
  * raw_url: postBibref_RAW_URL
- * @param bibref - 
+ * @param bibref -
  */
 export const postBibref = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1599,7 +1599,7 @@ export const getBibrefByIdURL = function(parameters = {}) {
  * method: postBibrefById_TYPE
  * raw_url: postBibrefById_RAW_URL
  * @param id - MongoDB document _id
- * @param bibref - 
+ * @param bibref -
  */
 export const postBibrefById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1808,7 +1808,7 @@ export const getDescriptorURL = function(parameters = {}) {
  * url: postDescriptorURL
  * method: postDescriptor_TYPE
  * raw_url: postDescriptor_RAW_URL
- * @param descriptor - 
+ * @param descriptor -
  */
 export const postDescriptor = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -1939,7 +1939,7 @@ export const getDescriptorByIdURL = function(parameters = {}) {
  * method: postDescriptorById_TYPE
  * raw_url: postDescriptorById_RAW_URL
  * @param id - MongoDB document _id
- * @param descriptor - 
+ * @param descriptor -
  */
 export const postDescriptorById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -2148,7 +2148,7 @@ export const getFensterURL = function(parameters = {}) {
  * url: postFensterURL
  * method: postFenster_TYPE
  * raw_url: postFenster_RAW_URL
- * @param fenster - 
+ * @param fenster -
  */
 export const postFenster = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -2279,7 +2279,7 @@ export const getFensterByIdURL = function(parameters = {}) {
  * method: postFensterById_TYPE
  * raw_url: postFensterById_RAW_URL
  * @param id - MongoDB document _id
- * @param fenster - 
+ * @param fenster -
  */
 export const postFensterById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -2488,7 +2488,7 @@ export const getStandortURL = function(parameters = {}) {
  * url: postStandortURL
  * method: postStandort_TYPE
  * raw_url: postStandort_RAW_URL
- * @param standort - 
+ * @param standort -
  */
 export const postStandort = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -2619,7 +2619,7 @@ export const getStandortByIdURL = function(parameters = {}) {
  * method: postStandortById_TYPE
  * raw_url: postStandortById_RAW_URL
  * @param id - MongoDB document _id
- * @param standort - 
+ * @param standort -
  */
 export const postStandortById = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()

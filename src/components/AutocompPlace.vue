@@ -70,7 +70,7 @@ export default {
         type: 'descriptor',
         query: JSON.stringify({
           name: {"$regex": this.search || '' },
-          instanceOf: "5be884e8add30d031e41bc10",
+          instanceOf: "5bf0f7abcd71ab01f9080293",
         })
       })
       .then((res) => {
