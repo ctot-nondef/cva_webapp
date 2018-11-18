@@ -63,9 +63,8 @@ export default {
           password: this.password,
         },
       }).then((res) => {
+        this.setToken({token: res.data.session, user: res.data.user})
         this.loginMut();
-        this.setToken({token: res.data.token, user: this.username});
-        this.init();
         this.closeDialog('loginDialog');
       });
     },

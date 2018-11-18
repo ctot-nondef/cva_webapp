@@ -1,13 +1,19 @@
-import axios from 'axios';
 import * as api from './api';
 
-api.setDomain('https://cvagoose.acdh-dev.oeaw.ac.at/api/v1');
+api.setDomain('https://wksgoose.acdh-dev.oeaw.ac.at/api/v1');
+
 
 const state = {
   apilib: api,
+  user: '',
+  token: null,
   loading: false,
   loadmsg: '',
   schemas: {},
+  classes: {},
+  page: 1,
+  size: 50,
+  p: ['user', 'token'],
 };
 
 const $config = {
@@ -28,6 +34,21 @@ const mutations = {
   setConfig(s, config) {
     s.config = config;
   },
+  setState(s, pstate) {
+    for (const key in pstate) {
+      if (pstate.hasOwnProperty(key) && s.hasOwnProperty(key)) s[key] = pstate[key];
+    }
+  },
+  setToken(s, { token, user }) {
+    s.token = token;
+    s.user = user;
+  },
+  setPage(s, page) {
+    s.page = page;
+  },
+  setSize(s, size) {
+    s.size = size;
+  },
   setLoading(s, msg) {
     s.loading = true;
     s.loadmsg = msg;
@@ -41,10 +62,16 @@ const mutations = {
       s.schemas[type] = attributes;
     }
   },
+  setClasses(s, { type, classlist }) {
+    if (type && classlist) {
+      s.classes[type] = classlist;
+    }
+  },
 };
 
 const actions = {
-  init({ state, commit }) {
+  init({ state, commit }, pstate) {
+    if (pstate.pState.api) commit('setState', pstate.pState.api);
     commit('setLoading', 'Loading Database Configuration.');
     state.apilib.get( { $config } ).then((res) => {
       if (res.data.data && res.data.data.length > 0) {
@@ -55,6 +82,24 @@ const actions = {
         commit('setLoadingFinished');
       }
     });
+    state.apilib.getDescriptor({
+      $config,
+      type: 'Descriptor',
+      query: JSON.stringify({
+        description: "Class of Actor",
+      }),
+    }).then((res) => {
+      commit('setClasses', { type: 'Actor', classlist: res.data});
+    });
+    state.apilib.getDescriptor({
+      $config,
+      type: 'Descriptor',
+      query: JSON.stringify({
+        description: "Class of Descriptor",
+      }),
+    }).then((res) => {
+      commit('setClasses', { type: 'Descriptor', classlist: res.data});
+    });
   },
   get({ state, commit }, { type, id, sort, skip, limit, query, populate }) {
     let p = {};
@@ -62,7 +107,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Getting ${type} ${id} from Database`);
-        p = state.apilib[`get${t}ById`]({ id, $config });
+        p = state.apilib[`get${t}ById`]({ id, $config, populate });
       } else if (type && !id) {
         commit('setLoading', `Getting Queryset of ${type} from Database`);
         p = state.apilib[`get${t}`]({ sort, skip, limit, query, populate, $config });
@@ -79,14 +124,19 @@ const actions = {
   },
   post({ state, commit }, { type, id, body }) {
     let p = {};
+    let params = {
+      $config
+    }
+    params[type] = body;
+    params.id = id;
     let t = type.charAt(0).toUpperCase() + type.slice(1);
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Updating ${type} ${id} to Database`);
-        p = state.apilib[`post${t}ByID`]({ id, [type]: body, $config });
+        p = state.apilib[`post${t}ById`](params);
       } else if (type && !id) {
         commit('setLoading', `Creating a ${type} in Database`);
-        p = state.apilib[`post${t}`]({ [type]: body, $config });
+        p = state.apilib[`post${t}`](params);
       } else reject('Invalid or Insufficient Parameters');
       p.then((res) => {
         commit('setLoadingFinished');
@@ -104,7 +154,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       if (type && id) {
         commit('setLoading', `Deleting ${type} ${id} in Database`);
-        p = state.apilib[`delete${t}ByID`]({ id });
+        p = state.apilib[`delete${t}ById`]({ id });
       } else reject('Invalid or Insufficient Parameters');
       p.then((res) => {
         commit('setLoadingFinished');
