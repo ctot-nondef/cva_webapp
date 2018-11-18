@@ -1,15 +1,15 @@
 <template>
   <div class="">
-    <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
-    <autocompactor v-model="fenster.creator" label="Stifter" :multiple="true" @input="fenster.creator=$event;returnObject();"></autocompactor>
-    <autocompplace v-model="fenster.place" label="Ort" :multiple="true" @input="fenster.place=$event;returnObject();"></autocompplace>
-    <v-text-field v-model="fenster.street" label="Strasse" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="fenster.postalcode" label="PLZ" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="fenster.endOfExistence" label="End of Existence" @input="returnObject()"></v-text-field>
-    <v-textarea v-model="fenster.description" label="Description" @input="returnObject()"></v-textarea>
+    <v-text-field v-model="standort.name" label="Name" @input="returnObject()"></v-text-field>
+    <autocompactor v-model="standort.creator" label="Stifter" :multiple="true" @input="standort.creator=$event;returnObject();"></autocompactor>
+    <autocompplace v-model="standort.place" label="Ort" :multiple="true" @input="standort.place=$event;returnObject();"></autocompplace>
+    <v-text-field v-model="standort.street" label="Strasse" @input="returnObject()"></v-text-field>
+    <v-text-field v-model="standort.postalcode" label="PLZ" @input="returnObject()"></v-text-field>
+    <v-text-field v-model="standort.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
+    <v-text-field v-model="standort.endOfExistence" label="End of Existence" @input="returnObject()"></v-text-field>
+    <v-textarea v-model="standort.description" label="Description" @input="returnObject()"></v-textarea>
     <v-list two-line>
-      <template v-for="(item, index) in fenster.images">
+      <template v-for="(item, index) in standort.images">
         <v-list-tile :key="item._id" avatar  @click="">
           <v-list-tile-avatar>
             <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path}`">
@@ -27,7 +27,7 @@
     <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
     <input type="file" style="display: none"  ref="image"  accept="image/*"  @change="onFilePicked">
     <v-list two-line>
-      <template v-for="(item, index) in fenster.references">
+      <template v-for="(item, index) in standort.references">
         <v-list-tile>
           <v-list-tile-content>
             <v-list-tile-title v-html="item.ref"></v-list-tile-title>
@@ -45,7 +45,7 @@
       <v-icon dark>edit</v-icon>
     </v-btn>
     <v-list>
-      <template v-for="(item, index) in fenster.comments">
+      <template v-for="(item, index) in standort.comments">
         <v-list-tile>
           <v-list-tile-content>
             <v-list-tile-title v-html="item"></v-list-tile-title>
@@ -56,7 +56,7 @@
         </v-list-tile>
       </template>
     </v-list>
-    <v-text-field label="Comment" v-model='newcomment'></v-text-field>
+    <v-text-field label="Reference" v-model='newcomment'></v-text-field>
     <v-btn fab dark small color="warning" @click="addcomment()">
       <v-icon dark>edit</v-icon>
     </v-btn>
@@ -78,7 +78,7 @@ export default {
   ],
   data() {
     return {
-      fenster: {},
+      standort: {},
       title: '',
       description: '',
       comment: '',
@@ -93,12 +93,12 @@ export default {
   },
   watch: {
     value(val) {
-      this.fenster = val;
+      this.standort = val;
     },
   },
   methods: {
     returnObject() {
-      this.$emit('input', this.fenster);
+      this.$emit('input', this.standort);
     },
     pickFile () {
       this.$refs.image.click ()
@@ -123,8 +123,8 @@ export default {
                 'Content-Type': 'multipart/form-data'
               }
           }).then((res) => {
-            if(!this.fenster.images) this.fenster.images = [];
-            this.fenster.images.push(res.data);
+            if(!this.standort.images) this.standort.images = [];
+            this.standort.images.push(res.data);
             this.returnObject();
             this.imageName = '';
             this.imageFile = '';
@@ -138,26 +138,26 @@ export default {
 			}
 		},
     removeimage(index) {
-      this.fenster.images.splice(index, 1);
+      this.standort.images.splice(index, 1);
       this.returnObject();
     },
     removereference(index) {
-      this.fenster.references.splice(index, 1);
+      this.standort.references.splice(index, 1);
       this.returnObject();
     },
     addreference() {
-      if(!this.fenster.references) this.fenster.references = [];
-      this.fenster.references.push(this.newreference);
+      if(!this.standort.references) this.standort.references = [];
+      this.standort.references.push(this.newreference);
       this.returnObject();
       this.newreference = {};
     },
     removecomment(index) {
-      this.fenster.comments.splice(index, 1);
+      this.standort.comments.splice(index, 1);
       this.returnObject();
     },
     addcomment() {
-      if(!this.fenster.comments) this.fenster.comments = [];
-      this.fenster.comments.push(this.newcomment);
+      if(!this.standort.comments) this.standort.comments = [];
+      this.standort.comments.push(this.newcomment);
       this.returnObject();
       this.newcomment = '';
     },
