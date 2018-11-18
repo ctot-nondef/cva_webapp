@@ -138,7 +138,7 @@ export default {
           _id: _id,
         }),
         populate: JSON.stringify([
-          {"path":"collector"},
+          {"path":"creator"},
           {"path":"place"}
         ]),
       }).then((res) => {
@@ -153,7 +153,7 @@ export default {
         if(this.cedits.place) this.cedits.place.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
-        if(this.cedits.collector) this.cedits.collector.forEach((el, idx, c) => {
+        if(this.cedits.creator) this.cedits.creator.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
         console.log(this.cedits);
