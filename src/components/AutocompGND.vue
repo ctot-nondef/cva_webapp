@@ -42,6 +42,7 @@ export default {
     'value',
     'label',
     'multiple',
+    'type',
   ],
   data() {
     return {
@@ -70,6 +71,7 @@ export default {
         {
           q: this.search,
           format: "json:suggest",
+          filter: this.type ? `type:${this.type}` : '',
         },
       })
       .then((res) => {

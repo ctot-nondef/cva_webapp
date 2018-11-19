@@ -32,8 +32,8 @@ const CONFIG = {
   GND: {
     BASEURL: 'https://lobid.org/gnd/',
     ENDPOINTS: {
+      DIRECT: '',
       SEARCH: 'search',
-
     },
     TIMEOUT: 5000,
     PARAMS: {

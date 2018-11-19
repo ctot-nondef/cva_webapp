@@ -43,7 +43,7 @@
             </v-toolbar>
             <v-container grid-list-md text-xs-center>
               <v-card color="grey lighten-2" class="pa-4 mb-4">
-                <autocompgnd :value="iactor" :multiple="false" @input="iactor=$event"></autocompgnd>
+                <autocompgnd :value="iactor" type="Person" :multiple="false" @input="iactor=$event"></autocompgnd>
                 <v-layout justify-end row fill-height>
                   <v-btn color="warning" @click="importactor()">Import</v-btn>
                   <v-btn color="primary" flat @click.native="iactor=[]">Clear</v-btn>
@@ -70,6 +70,8 @@
 <script>
 import { mapActions } from 'vuex';
 
+import HELPERS from '../helpers';
+
 import fundamentcard from './Fundament/FundamentCard';
 import actorlist from './actor_list';
 import actorform from './actor_form';
@@ -79,6 +81,7 @@ import autocompgnd from './AutocompGND';
 /* eslint no-console: ["error", { allow: ["log"] }] */
 
 export default {
+  mixins: [HELPERS],
   components: {
     fundamentcard,
     actorlist,
@@ -112,7 +115,12 @@ export default {
       });
     },
     importactor() {
-      console.log(this.iactor);
+      if(this.iactor.id) {
+        let id = this.iactor.id.split('/').slice(-1)[0];
+        this.APIS.GND.DIRECT.get(id).then((res) => {
+
+        });
+      }
     },
   },
   computed: {
