@@ -2,12 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import App from '../components/App';
 import Start from '../components/Start';
-import Import from '../components/Import';
 import standorte from '../components/standorte';
 import standortsingle from '../components/standort_single';
 import fenster from '../components/fenster';
 import fenstersingle from '../components/fenster_single';
-import inventorysingle from '../components/inventorysingle';
 import actors from '../components/actors';
 
 Vue.use(Router);
@@ -72,20 +70,6 @@ export default new Router({
           name: 'actors',
           components: {
             Content: actors,
-          },
-        },
-        {
-          path: 'inventory/:id',
-          name: 'inventorysingle',
-          components: {
-            Content: inventorysingle,
-          },
-        },
-        {
-          path: 'import',
-          name: 'import',
-          components: {
-            Content: Import,
           },
         },
         {
