@@ -137,7 +137,7 @@ export default {
 				this.imageUrl = ''
 			}
 		},
-    removeimage(index) {
+    removeimage(index) {      
       this.standort.images.splice(index, 1);
       this.returnObject();
     },

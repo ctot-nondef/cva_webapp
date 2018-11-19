@@ -148,9 +148,7 @@ export default {
       });
     },
     savestandort() {
-      console.log(this.cedits);
       if (this.cedits._id) {
-        console.log(this.cedits);
         if(this.cedits.place) this.cedits.place.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
@@ -159,8 +157,7 @@ export default {
         });
         if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
           c[idx] = el._id;
-        });
-        console.log(this.cedits);
+        });        
         this.post({ type: 'standort', id: this.cedits._id, body: this.cedits }).then((res) => {
           this.getRecords();
         });

@@ -29,6 +29,19 @@ const CONFIG = {
     },
     HEADERS: {},
   },
+  GND: {
+    BASEURL: 'https://lobid.org/gnd/',
+    ENDPOINTS: {
+      SEARCH: 'search',
+
+    },
+    TIMEOUT: 5000,
+    PARAMS: {
+    },
+    HEADERS: {
+      "Accept":"application/json",
+    },
+  },
 };
 
 let APIS = {};

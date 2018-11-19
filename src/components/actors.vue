@@ -42,13 +42,20 @@
               </v-menu>
             </v-toolbar>
             <v-container grid-list-md text-xs-center>
-                <v-card color="grey lighten-2" class="pa-4">
-                  <actorform :value="newactor" @input="newactor=$event"></actorform>
-                  <v-layout justify-end row fill-height>
-                    <v-btn color="warning" @click="addactor()">Save</v-btn>
-                    <v-btn color="primary" flat @click.native="actordialog=false">Discard</v-btn>
-                  </v-layout>
-                </v-card>
+              <v-card color="grey lighten-2" class="pa-4 mb-4">
+                <autocompgnd :value="iactor" :multiple="false" @input="iactor=$event"></autocompgnd>
+                <v-layout justify-end row fill-height>
+                  <v-btn color="warning" @click="importactor()">Import</v-btn>
+                  <v-btn color="primary" flat @click.native="iactor=[]">Clear</v-btn>
+                </v-layout>
+              </v-card>
+              <v-card color="grey lighten-2" class="pa-4">
+                <actorform :value="newactor" @input="newactor=$event"></actorform>
+                <v-layout justify-end row fill-height>
+                  <v-btn color="warning" @click="addactor()">Save</v-btn>
+                  <v-btn color="primary" flat @click.native="actordialog=false">Discard</v-btn>
+                </v-layout>
+              </v-card>
             </v-container>
           </v-card>
         </v-dialog>
@@ -66,6 +73,7 @@ import { mapActions } from 'vuex';
 import fundamentcard from './Fundament/FundamentCard';
 import actorlist from './actor_list';
 import actorform from './actor_form';
+import autocompgnd from './AutocompGND';
 
 /* eslint no-unused-vars: ["error", {"args": "none"}] */
 /* eslint no-console: ["error", { allow: ["log"] }] */
@@ -75,11 +83,13 @@ export default {
     fundamentcard,
     actorlist,
     actorform,
+    autocompgnd,
   },
   data() {
     return {
       actordialog: false,
       newactor: {},
+      iactor: {},
     };
   },
   methods: {
@@ -100,6 +110,9 @@ export default {
         this.actordialog = false;
         this.$refs.actorlist.getRecords();
       });
+    },
+    importactor() {
+      console.log(this.iactor);
     },
   },
   computed: {

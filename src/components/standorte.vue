@@ -43,7 +43,7 @@
             </v-toolbar>
             <v-container grid-list-md text-xs-center>
               <v-card color="grey lighten-2" class="pa-4">
-                <standortform :value="newstandort" @input="newstandort=$event"></standortform>
+                <standortform :value="cedit" @input="cedits=$event"></standortform>
                 <v-layout justify-end row fill-height>
                   <v-btn color="warning" @click="addstandort()">Save</v-btn>
                   <v-btn color="primary" flat @click.native="standortdialog=false">Discard</v-btn>
@@ -79,7 +79,8 @@ export default {
   data() {
     return {
       standortdialog: false,
-      newstandort: {},
+      cedit: {},
+      cedits: {},
     };
   },
   methods: {
@@ -89,20 +90,24 @@ export default {
       'delete',
     ]),
     addstandort() {
-      if(this.newstandort.place) this.newstandort.place.forEach((el, idx, c) => {
+      if(this.cedits.place) this.cedits.place.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
-      if(this.newstandort.creator) this.newstandort.creator.forEach((el, idx, c) => {
+      if(this.cedits.creator) this.cedits.creator.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
-      if(this.newstandort.images) this.newstandort.images.forEach((el, idx, c) => {
+      if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
-      this.post({ type: 'standort', body: this.newstandort }).then((res) => {
-        this.newstandort = {};
+      this.post({ type: 'standort', body: this.cedits }).then((res) => {
+        this.cedit = {};
         this.standortdialog = false;
         this.$refs.standortlist.getRecords();
       });
+    },
+    createstandort() {
+      this.cedit = {name: "", images: []};
+      this.standortdialog = true;
     },
   },
   computed: {
