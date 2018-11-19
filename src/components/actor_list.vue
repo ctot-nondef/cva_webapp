@@ -196,7 +196,7 @@ export default {
           c[idx] = el._id;
         });
         console.log(this.cedits);
-        this.post({ type: 'Actor', id: this.cedits._id, body: this.cedits }).then((res) => {
+        this.post({ type: 'actor', id: this.cedits._id, body: this.cedits }).then((res) => {
           this.getRecords();
         });
       }

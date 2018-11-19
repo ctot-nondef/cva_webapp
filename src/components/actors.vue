@@ -43,7 +43,8 @@
             </v-toolbar>
             <v-container grid-list-md text-xs-center>
               <v-card color="grey lighten-2" class="pa-4 mb-4">
-                <autocompgnd :value="iactor" type="Person" :multiple="false" @input="iactor=$event"></autocompgnd>
+                <v-select v-model="itype" :items="['Person','CorporateBody']" label="Type"></v-select>
+                <autocompgnd :value="iactor" :type="itype" :multiple="false" @input="iactor=$event"></autocompgnd>
                 <v-layout justify-end row fill-height>
                   <v-btn color="warning" @click="importactor()">Import</v-btn>
                   <v-btn color="primary" flat @click.native="iactor=[]">Clear</v-btn>
@@ -93,6 +94,7 @@ export default {
       actordialog: false,
       newactor: {},
       iactor: {},
+      itype: 'Person',
     };
   },
   methods: {
@@ -118,7 +120,8 @@ export default {
       if(this.iactor.id) {
         let id = this.iactor.id.split('/').slice(-1)[0];
         this.APIS.GND.DIRECT.get(id).then((res) => {
-
+          console.log(res.data);
+          this.newactor = this.mapGNDImport(this.itype, res.data);
         });
       }
     },

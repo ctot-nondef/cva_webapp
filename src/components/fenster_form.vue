@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
-    <v-select v-model="fenster.stufe" :items="['Fenster','Szene','Scheibe']" label="Stufe"></v-select>    
+    <v-select v-model="fenster.stufe" :items="['Fenster','Szene','Scheibe']" label="Stufe"></v-select>
     <autocompactor v-model="fenster.creator" label="Künstler/Werkstatt" :multiple="true" @input="fenster.creator=$event;returnObject();"></autocompactor>
     <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
     <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
