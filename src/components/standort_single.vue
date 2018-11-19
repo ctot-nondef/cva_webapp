@@ -57,7 +57,7 @@ export default {
     this.get({ type: 'Standort', id: this.$route.params.id }).then((res) => {
       this.view = res.data;
     });
-    this.get({ type: 'Fenster', query: `{"partOf":"${this.$route.params.id}"}` }).then((res) => {
+    this.get({ type: 'Fenster', query: `{"locatedAt":"${this.$route.params.id}"}` }).then((res) => {
       this.data = res.data;
     });
   },
