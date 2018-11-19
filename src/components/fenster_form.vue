@@ -4,7 +4,9 @@
     <autocompactor v-model="fenster.creator" label="Künstler/Werkstatt" :multiple="true" @input="fenster.creator=$event;returnObject();"></autocompactor>
     <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
     <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
-    <v-textarea v-model="fenster.description" label="Description" @input="returnObject()"></v-textarea>
+    <autocompkeyword v-model="fenster.classification" label="Schlagwort" :multiple="true" @input="fenster.classification=$event;returnObject();"></autocompkeyword>
+    <autocompstandort v-model="fenster.locatedAt" label="Standort" @input="fenster.locatedAt=$event;returnObject();"></autocompstandort>
+    <autocompfenster v-model="fenster.isPartOf" label="Teil Von" @input="fenster.isPartOf=$event;returnObject();"></autocompfenster>
     <v-list two-line>
       <template v-for="(item, index) in fenster.images">
         <v-list-tile :key="item._id" avatar  @click="">
@@ -63,12 +65,18 @@
 import axios from 'axios';
 import autocompactor from './AutocompActor';
 import autocompplace from './AutocompPlace';
+import autocompkeyword from './AutocompKeyword';
+import autocompfenster from './AutocompFenster';
+import autocompstandort from './AutocompStandort';
 
 /* eslint no-unused-vars: ["error", {"args": "none"}] */
 export default {
   components: {
     autocompactor,
     autocompplace,
+    autocompkeyword,
+    autocompfenster,
+    autocompstandort,
   },
   props: [
     'value',

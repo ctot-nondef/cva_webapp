@@ -89,15 +89,22 @@ export default {
       'delete',
     ]),
     addfenster() {
-      if(this.newfenster.place) this.newfenster.place.forEach((el, idx, c) => {
+      console.log(this.newfenster);
+      if(this.newfenster.funder) this.newfenster.funder.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
       if(this.newfenster.creator) this.newfenster.creator.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
+      if(this.newfenster.classification) this.newfenster.classification.forEach((el, idx, c) => {
+        c[idx] = el._id;
+      });
       if(this.newfenster.images) this.newfenster.images.forEach((el, idx, c) => {
         c[idx] = el._id;
       });
+      if(this.newfenster.locatedAt) this.newfenster.locatedAt = this.newfenster.locatedAt._id;
+      if(this.newfenster.isPartOf) this.newfenster.isPartOf = this.newfenster.isPartOf._id;
+      console.log(this.newfenster);
       this.post({ type: 'fenster', body: this.newfenster }).then((res) => {
         this.newfenster = {};
         this.fensterdialog = false;

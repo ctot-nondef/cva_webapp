@@ -139,8 +139,10 @@ export default {
         }),
         populate: JSON.stringify([
           {"path":"creator"},
-          {"path":"place"},
+          {"path":"funder"},
           {"path":"images"},
+          {"path":"locatedAt"},
+          {"path":"isPartOf"},
         ]),
       }).then((res) => {
         this.cedit = res.data[0];
@@ -151,15 +153,20 @@ export default {
       console.log(this.cedits);
       if (this.cedits._id) {
         console.log(this.cedits);
-        if(this.cedits.place) this.cedits.place.forEach((el, idx, c) => {
+        if(this.cedits.funder) this.cedits.funder.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
         if(this.cedits.creator) this.cedits.creator.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
+        if(this.cedits.classification) this.cedits.classification.forEach((el, idx, c) => {
+          c[idx] = el._id;
+        });
         if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
           c[idx] = el._id;
         });
+        if(this.cedits.locatedAt) this.cedits.locatedAt = this.cedits.locatedAt._id;
+        if(this.cedits.isPartOf) this.cedits.isPartOf = this.cedits.isPartOf._id;
         console.log(this.cedits);
         this.post({ type: 'fenster', id: this.cedits._id, body: this.cedits }).then((res) => {
           this.getRecords();
