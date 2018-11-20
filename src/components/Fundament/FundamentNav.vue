@@ -60,8 +60,8 @@
               <v-list-tile>
                 <router-link :to="{ name: 'start' }">
                   <div class="logo">
-                    <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;text-decoration-line: none!important;">VC</h5>
-                    <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;text-decoration-line: none!important;">HC</h5>
+                    <h5 style="font-weight: 200; padding: 0px; margin: 0px;letter-spacing: 3px!important; line-height:25px;text-decoration-line: none!important;">CV</h5>
+                    <h5 style="font-weight: 800; padding: 0px; margin: 0px;letter-spacing: 2px!important; line-height:25px;text-decoration-line: none!important;">A</h5>
                   </div>
                   Database
                 </router-link>
