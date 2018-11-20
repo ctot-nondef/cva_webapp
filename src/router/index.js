@@ -7,6 +7,7 @@ import standortsingle from '../components/standort_single';
 import fenster from '../components/fenster';
 import fenstersingle from '../components/fenster_single';
 import actors from '../components/actors';
+import descriptors from '../components/descriptors';
 
 Vue.use(Router);
 
@@ -70,6 +71,13 @@ export default new Router({
           name: 'actors',
           components: {
             Content: actors,
+          },
+        },
+        {
+          path: 'descriptors',
+          name: 'descriptors',
+          components: {
+            Content: descriptors,
           },
         },
         {

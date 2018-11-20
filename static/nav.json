@@ -63,7 +63,7 @@
 				"icon":"device_hub",
 				"abstract":"",
 				"startpage":{
-					"name": "schema",
+					"name": "descriptors",
 					"params": {
 						"lang": "en" }
 					},
