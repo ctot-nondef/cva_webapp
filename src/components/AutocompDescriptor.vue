@@ -18,12 +18,10 @@
           </v-chip>
       </template>
       <template slot="item" slot-scope="data">
-        <template v-if="typeof data.item !== 'object'">
-          <v-list-tile-content v-text="data.item"></v-list-tile-content>
-        </template>
-        <template v-else>
+        <template>
           <v-list-tile-content>
             <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+            <v-list-tile-sub-title v-html="data.item.labels.filter(i => i.lang == 'de')[0].label"></v-list-tile-sub-title>
           </v-list-tile-content>
         </template>
       </template>

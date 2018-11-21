@@ -24,6 +24,7 @@
         <template v-else>
           <v-list-tile-content>
             <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+            <v-list-tile-sub-title v-html="data.item.labels.filter(i => i.lang == 'de')[0].label"></v-list-tile-sub-title>
           </v-list-tile-content>
         </template>
       </template>
@@ -68,6 +69,7 @@ export default {
       // this.$info(vm);
       this.get({
         type: 'descriptor',
+        limit: 10,
         query: JSON.stringify({
           name: {"$regex": this.search || '' },
           instanceOf: "5bf0fb820c193d09a92774a4",
