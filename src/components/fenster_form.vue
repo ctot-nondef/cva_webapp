@@ -2,24 +2,22 @@
   <div class="">
 
     <v-layout justify-end row fill-height>
-      <v-flex xs6>
+      <v-flex xs10>
         <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
       </v-flex>
-      <v-flex xs6>
+      <v-flex xs2>
         <v-select v-model="fenster.stufe" :items="['Fenster','Szene','Scheibe']" label="Stufe"></v-select>
       </v-flex>
     </v-layout>
     <v-layout justify-end row fill-height>
-      <v-flex xs4>
+      <v-flex xs2>
         <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
       </v-flex>
-      <v-flex xs4>
+      <v-flex xs10>
         <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
       </v-flex>
-      <v-flex xs4>
-        <autocompstandort v-model="fenster.locatedAt" label="Standort" @input="fenster.locatedAt=$event;returnObject();"></autocompstandort>
-      </v-flex>
     </v-layout>
+    <autocompstandort v-model="fenster.locatedAt" label="Standort" @input="fenster.locatedAt=$event;returnObject();"></autocompstandort>
     <v-layout justify-end row fill-height>
       <v-flex xs6>
         <autocompfenster v-model="fenster.isPartOf" label="Teil Von" @input="fenster.isPartOf=$event;returnObject();"></autocompfenster>
