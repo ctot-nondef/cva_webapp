@@ -23,8 +23,7 @@
           @keydown.esc="standortdialog=false"
           fullscreen
           hide-overlay
-          transition="dialog-bottom-transition"
-          scrollable
+          transition="dialog-bottom-transition"          
           >
           <v-card>
             <v-toolbar dark color="primary">

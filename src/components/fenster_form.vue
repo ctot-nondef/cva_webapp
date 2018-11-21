@@ -1,13 +1,34 @@
 <template>
   <div class="">
-    <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
-    <v-select v-model="fenster.stufe" :items="['Fenster','Szene','Scheibe']" label="Stufe"></v-select>
-    <autocompactor v-model="fenster.creator" label="Künstler/Werkstatt" :multiple="true" @input="fenster.creator=$event;returnObject();"></autocompactor>
-    <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
-    <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
+
+    <v-layout justify-end row fill-height>
+      <v-flex xs6>
+        <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
+      </v-flex>
+      <v-flex xs6>
+        <v-select v-model="fenster.stufe" :items="['Fenster','Szene','Scheibe']" label="Stufe"></v-select>
+      </v-flex>
+    </v-layout>
+    <v-layout justify-end row fill-height>
+      <v-flex xs4>
+        <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
+      </v-flex>
+      <v-flex xs4>
+        <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
+      </v-flex>
+      <v-flex xs4>
+        <autocompstandort v-model="fenster.locatedAt" label="Standort" @input="fenster.locatedAt=$event;returnObject();"></autocompstandort>
+      </v-flex>
+    </v-layout>
+    <v-layout justify-end row fill-height>
+      <v-flex xs6>
+        <autocompfenster v-model="fenster.isPartOf" label="Teil Von" @input="fenster.isPartOf=$event;returnObject();"></autocompfenster>
+      </v-flex>
+      <v-flex xs6>
+        <autocompactor v-model="fenster.creator" label="Künstler/Werkstatt" :multiple="true" @input="fenster.creator=$event;returnObject();"></autocompactor>
+      </v-flex>
+    </v-layout>
     <autocompkeyword v-model="fenster.classification" label="Schlagwort" :multiple="true" @input="fenster.classification=$event;returnObject();"></autocompkeyword>
-    <autocompstandort v-model="fenster.locatedAt" label="Standort" @input="fenster.locatedAt=$event;returnObject();"></autocompstandort>
-    <autocompfenster v-model="fenster.isPartOf" label="Teil Von" @input="fenster.isPartOf=$event;returnObject();"></autocompfenster>
     <v-list two-line>
       <template v-for="(item, index) in fenster.images">
         <v-list-tile :key="item._id" avatar  @click="">
@@ -39,11 +60,19 @@
         </v-list-tile>
       </template>
     </v-list>
-    <v-text-field label="Reference" v-model='newreference.ref'></v-text-field>
-    <v-text-field label="PageNo" v-model='newreference.pageno'></v-text-field>
-    <v-btn fab dark small color="warning" @click="addreference()">
-      <v-icon dark>edit</v-icon>
-    </v-btn>
+    <v-layout justify-end row fill-height>
+      <v-flex xs5>
+        <v-text-field label="Reference" v-model='newreference.ref'></v-text-field>
+      </v-flex>
+      <v-flex xs5>
+        <v-text-field label="PageNo" v-model='newreference.pageno'></v-text-field>
+      </v-flex>
+      <v-flex xs2>
+        <v-btn fab dark small color="warning" @click="addreference()">
+          <v-icon dark>edit</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
     <v-list>
       <template v-for="(item, index) in fenster.comments">
         <v-list-tile>
@@ -56,10 +85,16 @@
         </v-list-tile>
       </template>
     </v-list>
-    <v-text-field label="Comment" v-model='newcomment'></v-text-field>
-    <v-btn fab dark small color="warning" @click="addcomment()">
-      <v-icon dark>edit</v-icon>
-    </v-btn>
+    <v-layout justify-end row fill-height>
+      <v-flex xs10>
+        <v-text-field label="Comment" v-model='newcomment'></v-text-field>
+      </v-flex>
+      <v-flex xs2>
+        <v-btn fab dark small color="warning" @click="addcomment()">
+          <v-icon dark>edit</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 <script>
