@@ -28,11 +28,19 @@
          </v-list-tile>
        </template>
      </v-list>
-     <v-text-field label="Reference" v-model='newlabel.label'></v-text-field>
-     <v-select v-model="newlabel.lang" :items="['en','de']" label="Language"></v-select>
-     <v-btn fab dark small color="warning" @click="addlabel()">
-       <v-icon dark>edit</v-icon>
-     </v-btn>
+     <v-layout justify-end row fill-height>
+       <v-flex xs8>
+         <v-text-field label="Label" v-model='newlabel.label'></v-text-field>
+       </v-flex>
+       <v-flex xs2>
+         <v-select v-model="newlabel.lang" :items="['en','de']" label="Language"></v-select>
+       </v-flex>
+       <v-flex xs2>
+         <v-btn fab dark small color="warning" @click="addlabel()">
+           <v-icon dark>edit</v-icon>
+         </v-btn>
+       </v-flex>
+      </v-layout>
      <v-textarea v-model="descriptor.description" label="Description" @input="returnObject()"></v-textarea>
   </div>
 </template>
