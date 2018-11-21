@@ -1,65 +1,97 @@
 <template>
-  <div class="">
-    <v-text-field v-model="standort.name" label="Name" @input="returnObject()"></v-text-field>
-    <autocompactor v-model="standort.creator" label="Stifter" :multiple="true" @input="standort.creator=$event;returnObject();"></autocompactor>
-    <autocompplace v-model="standort.place" label="Ort" :multiple="true" @input="standort.place=$event;returnObject();"></autocompplace>
-    <v-text-field v-model="standort.street" label="Strasse" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="standort.postalcode" label="PLZ" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="standort.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
-    <v-text-field v-model="standort.endOfExistence" label="End of Existence" @input="returnObject()"></v-text-field>
-    <v-textarea v-model="standort.description" label="Description" @input="returnObject()"></v-textarea>
-    <v-list two-line>
-      <template v-for="(item, index) in standort.images">
-        <v-list-tile :key="item._id" avatar  @click="">
-          <v-list-tile-avatar>
-            <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path}`">
-          </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title v-html="item.name"></v-list-tile-title>
-            <v-list-tile-sub-title v-html="item.path"></v-list-tile-sub-title>
-          </v-list-tile-content>
-          <v-btn fab dark small color="error" @click="removeimage(index)">
-            <v-icon dark>delete</v-icon>
+  <div>
+      <v-text-field v-model="standort.name" label="Name" @input="returnObject()"></v-text-field>
+      <v-layout justify-end row fill-height>
+        <v-flex xs6>
+          <autocompactor v-model="standort.creator" label="Stifter" :multiple="true" @input="standort.creator=$event;returnObject();"></autocompactor>
+        </v-flex>
+        <v-flex xs6>
+          <autocompplace v-model="standort.place" label="Ort" :multiple="true" @input="standort.place=$event;returnObject();"></autocompplace>
+        </v-flex>
+      </v-layout>
+      <v-layout justify-end row fill-height>
+        <v-flex xs9>
+          <v-text-field v-model="standort.street" label="Strasse" @input="returnObject()"></v-text-field>
+        </v-flex>
+        <v-flex xs3>
+          <v-text-field v-model="standort.postalcode" label="PLZ" @input="returnObject()"></v-text-field>
+        </v-flex>
+      </v-layout>
+      <v-layout justify-end row fill-height>
+        <v-flex xs6>
+          <v-text-field v-model="standort.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
+        </v-flex>
+        <v-flex xs6>
+          <v-text-field v-model="standort.endOfExistence" label="End of Existence" @input="returnObject()"></v-text-field>
+        </v-flex>
+      </v-layout>
+      <v-textarea v-model="standort.description" label="Description" @input="returnObject()"></v-textarea>
+      <v-list two-line>
+        <template v-for="(item, index) in standort.images">
+          <v-list-tile :key="item._id" avatar  @click="">
+            <v-list-tile-avatar>
+              <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path}`">
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="item.name"></v-list-tile-title>
+              <v-list-tile-sub-title v-html="item.path"></v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-btn fab dark small color="error" @click="removeimage(index)">
+              <v-icon dark>delete</v-icon>
+            </v-btn>
+          </v-list-tile>
+        </template>
+      </v-list>
+      <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+      <input type="file" style="display: none"  ref="image"  accept="image/*"  @change="onFilePicked">
+      <v-list two-line>
+        <template v-for="(item, index) in standort.references">
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="item.ref"></v-list-tile-title>
+              <v-list-tile-sub-title v-html="item.pageno"></v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-btn fab dark small color="error" @click="removereference(index)">
+              <v-icon dark>delete</v-icon>
+            </v-btn>
+          </v-list-tile>
+        </template>
+      </v-list>
+      <v-layout justify-end row fill-height>
+        <v-flex xs5>
+          <v-text-field label="Reference" v-model='newreference.ref'></v-text-field>
+        </v-flex>
+        <v-flex xs5>
+          <v-text-field label="PageNo" v-model='newreference.pageno'></v-text-field>
+        </v-flex>
+        <v-flex xs2>
+          <v-btn fab dark small color="warning" @click="addreference()">
+            <v-icon dark>edit</v-icon>
           </v-btn>
-        </v-list-tile>
-      </template>
-    </v-list>
-    <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
-    <input type="file" style="display: none"  ref="image"  accept="image/*"  @change="onFilePicked">
-    <v-list two-line>
-      <template v-for="(item, index) in standort.references">
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title v-html="item.ref"></v-list-tile-title>
-            <v-list-tile-sub-title v-html="item.pageno"></v-list-tile-sub-title>
-          </v-list-tile-content>
-          <v-btn fab dark small color="error" @click="removereference(index)">
-            <v-icon dark>delete</v-icon>
+        </v-flex>
+      </v-layout>
+      <v-list>
+        <template v-for="(item, index) in standort.comments">
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="item"></v-list-tile-title>
+            </v-list-tile-content>
+            <v-btn fab dark small color="error" @click="removecomment(index)">
+              <v-icon dark>delete</v-icon>
+            </v-btn>
+          </v-list-tile>
+        </template>
+      </v-list>
+      <v-layout justify-end row fill-height>
+        <v-flex xs10>
+          <v-text-field label="Comment" v-model='newcomment'></v-text-field>
+        </v-flex>
+        <v-flex xs2>
+          <v-btn fab dark small color="warning" @click="addcomment()">
+            <v-icon dark>edit</v-icon>
           </v-btn>
-        </v-list-tile>
-      </template>
-    </v-list>
-    <v-text-field label="Reference" v-model='newreference.ref'></v-text-field>
-    <v-text-field label="PageNo" v-model='newreference.pageno'></v-text-field>
-    <v-btn fab dark small color="warning" @click="addreference()">
-      <v-icon dark>edit</v-icon>
-    </v-btn>
-    <v-list>
-      <template v-for="(item, index) in standort.comments">
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title v-html="item"></v-list-tile-title>
-          </v-list-tile-content>
-          <v-btn fab dark small color="error" @click="removecomment(index)">
-            <v-icon dark>delete</v-icon>
-          </v-btn>
-        </v-list-tile>
-      </template>
-    </v-list>
-    <v-text-field label="Reference" v-model='newcomment'></v-text-field>
-    <v-btn fab dark small color="warning" @click="addcomment()">
-      <v-icon dark>edit</v-icon>
-    </v-btn>
+        </v-flex>
+      </v-layout>
   </div>
 </template>
 <script>
@@ -137,7 +169,7 @@ export default {
 				this.imageUrl = ''
 			}
 		},
-    removeimage(index) {      
+    removeimage(index) {
       this.standort.images.splice(index, 1);
       this.returnObject();
     },

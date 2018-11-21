@@ -32,7 +32,6 @@
         fullscreen
         hide-overlay
         transition="dialog-bottom-transition"
-        scrollable
         >
         <v-card>
           <v-toolbar dark color="primary">
@@ -157,7 +156,7 @@ export default {
         });
         if(this.cedits.images) this.cedits.images.forEach((el, idx, c) => {
           c[idx] = el._id;
-        });        
+        });
         this.post({ type: 'standort', id: this.cedits._id, body: this.cedits }).then((res) => {
           this.getRecords();
         });

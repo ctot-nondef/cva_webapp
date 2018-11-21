@@ -57,7 +57,12 @@ const IMPORT = {
       dateOfEstablishment: "beginOfExistence",
       dateOfTermination: "endOfExistence",
     },
+    PlaceOrGeographicName: {
+      
+    },
+    SubjectHeading: {
 
+    }
   },
 };
 
