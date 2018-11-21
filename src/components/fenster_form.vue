@@ -1,6 +1,5 @@
 <template>
   <div class="">
-
     <v-layout justify-end row fill-height>
       <v-flex xs10>
         <v-text-field v-model="fenster.name" label="Name" @input="returnObject()"></v-text-field>
