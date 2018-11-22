@@ -67,8 +67,10 @@ export default {
       // this.$info(vm);
       this.get({
         type: 'actor',
+        sort: 'name',
+        limit: 10,
         query: JSON.stringify({
-          name: {"$regex": this.search || '' },
+          name: {"$regex": this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') || '' },
         })
       })
       .then((res) => {

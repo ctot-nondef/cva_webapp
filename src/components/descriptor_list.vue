@@ -150,7 +150,7 @@ export default {
       this.loading = true;
       let q = {}
       if (this.classfilter != '') q.instanceOf = this.classfilter;
-      if (this.namefilter != '') q.name = {"$regex": this.namefilter };
+      if (this.namefilter != '') q.name = { "$regex": this.namefilter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') };
       this.get({
         type: 'Descriptor',
         sort: this.pagination.descending ? `-${this.pagination.sortBy}` : this.pagination.sortBy,
