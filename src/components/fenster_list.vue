@@ -142,6 +142,7 @@ export default {
           {"path":"images"},
           {"path":"locatedAt"},
           {"path":"isPartOf"},
+          {"path":"classification"},
         ]),
       }).then((res) => {
         this.cedit = res.data[0];
