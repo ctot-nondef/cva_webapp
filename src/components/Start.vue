@@ -8,25 +8,18 @@
       </fundamentjumbo>
       <v-container grid-list-md v-if="$store.state.app.loggedin">
         <v-layout justify-space-around row wrap>
-          <fundamentsectiondiv icon="description" caption="Collection Data"></fundamentsectiondiv>
-          <v-flex xs12 sm6>
-            <fundamentcard
-              caption="Create a new Collection."
-            >
-              <p class="card-text">
-                <v-btn @click="openCreateDialog('inventory')" color="info">Create</v-btn>
-              </p>
-            </fundamentcard>
-          </v-flex>
-          <v-flex xs12 sm6>
-            <fundamentcard
-              caption="Launch a new Query to ElasticSearch."
-              :link="{ name: 'query', params: { lang: 'en' }}"
-            >
-              <p class="card-text"></p>
-            </fundamentcard>
-          </v-flex>
           <fundamentsectiondiv icon="device_hub" caption="Stats"></fundamentsectiondiv>
+          <v-flex xs12>
+            <fundamentcard caption="Fenster">
+              <div slot="content">
+                <v-layout justify-center column fill-height>
+                  <v-flex xs12>
+                    <fenstersearch ref="fenstersearch"></fenstersearch>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </fundamentcard>
+          </v-flex>
         </v-layout>
       </v-container>
       <v-container grid-list-md v-if="!$store.state.app.loggedin">
@@ -40,12 +33,14 @@ import { mapMutations } from 'vuex';
 import fundamentjumbo from './Fundament/FundamentJumbo';
 import fundamentcard from './Fundament/FundamentCard';
 import fundamentsectiondiv from './Fundament/FundamentSectionDiv';
+import fenstersearch from './fenster_search';
 
 export default {
   components: {
     fundamentjumbo,
     fundamentcard,
     fundamentsectiondiv,
+    fenstersearch,
   },
   name: 'start',
   data() {
