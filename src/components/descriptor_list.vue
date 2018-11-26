@@ -42,7 +42,7 @@
               {{ props.item.instanceOf.labels[4].label }}
             </div>
           </td>
-          <td>{{ props.item.description }}</td>
+          <td>{{ props.item.description.slice(0, 150) }} ...</td>
           <td>
             <v-btn fab dark small :to="{ name: 'descriptorsingle', params: { id:  props.item._id  }}" color="primary">
               <v-icon dark>collections_bookmark</v-icon>
@@ -122,8 +122,8 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Type', value: 'instanceOf' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions' },
+        { text: 'Description', value: 'description', width: '50%' },
+        { text: 'Actions', value: 'actions', width: '25%' },
       ],
       pagination: {},
     };
@@ -150,7 +150,7 @@ export default {
       this.loading = true;
       let q = {}
       if (this.classfilter != '') q.instanceOf = this.classfilter;
-      if (this.namefilter != '') q.name = {"$regex": this.namefilter };
+      if (this.namefilter != '') q.name = { "$regex": this.namefilter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') };
       this.get({
         type: 'Descriptor',
         sort: this.pagination.descending ? `-${this.pagination.sortBy}` : this.pagination.sortBy,

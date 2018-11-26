@@ -122,7 +122,7 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Type', value: 'instanceOf' },
-        { text: 'Actions', value: 'actions' },
+        { text: 'Actions', value: 'actions', width: '25%' },
       ],
       pagination: {},
     };

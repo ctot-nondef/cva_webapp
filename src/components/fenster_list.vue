@@ -88,7 +88,7 @@ export default {
       totalHits: 0,
       headers: [
         { text: 'Name', value: 'name' },
-        { text: 'Actions', value: 'actions' },
+        { text: 'Actions', value: 'actions', width: '25%' },
       ],
       pagination: {},
     };

@@ -68,8 +68,10 @@ export default {
       // this.$info(vm);
       this.get({
         type: 'descriptor',
+        limit: 10,
+        sort: 'name',
         query: JSON.stringify({
-          name: {"$regex": this.search || '' },
+          name: {"$regex": this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') || '' },
           instanceOf: "5bf0fb820c193d09a927749d",
         })
       })

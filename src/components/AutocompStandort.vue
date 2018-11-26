@@ -67,8 +67,10 @@ export default {
       // this.$info(vm);
       this.get({
         type: 'standort',
+        limit: 10,
+        sort: 'name',
         query: JSON.stringify({
-          name: {"$regex": this.search || '' },
+          name: {"$regex": this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') || '' },
         })
       })
       .then((res) => {

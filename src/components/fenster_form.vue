@@ -10,7 +10,7 @@
     </v-layout>
     <v-layout justify-end row fill-height>
       <v-flex xs2>
-        <v-text-field v-model="fenster.beginOfExistence" label="Begin of Existence" @input="returnObject()"></v-text-field>
+        <v-text-field v-model="fenster.created" label="Begin of Existence" @input="returnObject()"></v-text-field>
       </v-flex>
       <v-flex xs10>
         <autocompactor v-model="fenster.funder" label="Stifter" :multiple="true" @input="fenster.funder=$event;returnObject();"></autocompactor>
