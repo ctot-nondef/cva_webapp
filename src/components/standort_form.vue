@@ -30,7 +30,7 @@
         <template v-for="(item, index) in standort.images">
           <v-list-tile :key="item._id" avatar  @click="">
             <v-list-tile-avatar>
-              <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path}`">
+              <img :src="`https://cvagoose.acdh-dev.oeaw.ac.at/${item.path.split('.')[0]}_thumb.jpg`">
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title v-html="item.name"></v-list-tile-title>
