@@ -1,5 +1,15 @@
 <template>
   <div class="">
+    <v-card color="grey lighten-2" class="pa-4 mb-3">
+      <v-layout justify-end row fill-height>
+      <v-flex xs6>
+        <v-select v-model="stufefilter" @input="getRecords()" :items="['', 'Fenster','Szene','Scheibe']" label="Stufe"></v-select>
+      </v-flex>
+      <v-flex xs6>
+        <autocompstandort v-model="standortfilter" label="Standort" @input="standortfilter=$event;getRecords()"></autocompstandort>
+      </v-flex>
+     </v-layout>
+    </v-card>
     <v-data-table
       :headers="headers"
       :items="data"
@@ -68,6 +78,7 @@ import { mapMutations, mapActions } from 'vuex';
 
 import fundamentcard from './Fundament/FundamentCard';
 import fensterform from './fenster_form';
+import autocompstandort from './AutocompStandort';
 
 /* eslint no-unused-vars: ["error", {"args": "none"}] */
 /* eslint no-console: ["error", { allow: ["log"] }] */
@@ -76,6 +87,7 @@ export default {
   components: {
     fundamentcard,
     fensterform,
+    autocompstandort,
   },
   data() {
     return {
@@ -91,6 +103,8 @@ export default {
         { text: 'Actions', value: 'actions', width: '25%' },
       ],
       pagination: {},
+      stufefilter: '',
+      standortfilter: null,
     };
   },
   watch: {
@@ -113,12 +127,24 @@ export default {
     ]),
     getRecords() {
       this.loading = true;
-      console.log(this.pagination);
+      console.log(this.standortfilter);
+      let q = {}
+      if (this.stufefilter != '') q.stufe = this.stufefilter;
+      if (this.standortfilter) q.locatedAt = this.standortfilter._id;
       this.get({
         type: 'Fenster',
         sort: this.pagination.descending ? `-${this.pagination.sortBy}` : this.pagination.sortBy,
         limit: this.pagination.rowsPerPage,
         skip: (this.pagination.page - 1) * this.pagination.rowsPerPage,
+        populate: JSON.stringify([
+          {"path":"creator"},
+          {"path":"funder"},
+          {"path":"images"},
+          {"path":"locatedAt"},
+          {"path":"isPartOf"},
+          {"path":"classification"},
+        ]),
+        query: JSON.stringify(q),
       }).then((res) => {
         this.loading = false;
         this.data = res.data;
