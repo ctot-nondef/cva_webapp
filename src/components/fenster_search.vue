@@ -12,6 +12,9 @@
         <autocompkeyword v-model="classificationfilter" label="Schlagwort" :multiple="true" @input="classificationfilter=$event;getRecords();"></autocompkeyword>
       </v-flex>
       <v-flex xs12>
+        <autocompfenster v-model="fensterfilter" label="Teil von" @input="fensterfilter=$event;getRecords();"></autocompfenster>
+      </v-flex>
+      <v-flex xs12>
         <v-layout row>
             <v-flex shrink style="width: 60px">
               <v-text-field
@@ -98,6 +101,7 @@ import fundamentcard from './Fundament/FundamentCard';
 import fensterform from './fenster_form';
 import autocompstandort from './AutocompStandort';
 import autocompkeyword from './AutocompKeyword';
+import autocompfenster from './AutocompFenster';
 
 /* eslint no-unused-vars: ["error", {"args": "none"}] */
 /* eslint no-console: ["error", { allow: ["log"] }] */
@@ -108,6 +112,7 @@ export default {
     fensterform,
     autocompstandort,
     autocompkeyword,
+    autocompfenster,
   },
   data() {
     return {
@@ -125,6 +130,7 @@ export default {
       pagination: {},
       stufefilter: '',
       standortfilter: null,
+      fensterfilter: null,
       classificationfilter: [],
       datefilter: [1400, 1600]
     };
@@ -152,6 +158,7 @@ export default {
       let q = {}
       if (this.stufefilter != '') q.stufe = this.stufefilter;
       if (this.standortfilter) q.locatedAt = this.standortfilter._id;
+      if (this.fensterfilter) q.isPartOf = this.fensterfilter._id;
       if (this.classificationfilter.length > 0) {
         q.classification = { "$in":[] };
         let idx = this.classificationfilter.length - 1;
