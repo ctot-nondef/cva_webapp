@@ -83,7 +83,7 @@
           </v-list-tile>
         </v-list>
          <v-card-actions>
-           <v-btn flat color="primary">Details</v-btn>
+           <v-btn :to="{ name: 'fenstersingle', params: { id:  props.item._id  }}" color="primary">Details</v-btn>
          </v-card-actions>
        </v-card>
       </v-flex>
@@ -149,7 +149,6 @@ export default {
     ]),
     getRecords() {
       this.loading = true;
-      console.log(this.classificationfilter);
       let q = {}
       if (this.stufefilter != '') q.stufe = this.stufefilter;
       if (this.standortfilter) q.locatedAt = this.standortfilter._id;

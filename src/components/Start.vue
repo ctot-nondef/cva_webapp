@@ -8,7 +8,7 @@
       </fundamentjumbo>
       <v-container grid-list-md v-if="$store.state.app.loggedin">
         <v-layout justify-space-around row wrap>
-          <fundamentsectiondiv icon="device_hub" caption="Stats"></fundamentsectiondiv>
+          <fundamentsectiondiv icon="search" caption="Suche"></fundamentsectiondiv>
           <v-flex xs12>
             <fundamentcard caption="Fenster">
               <div slot="content">

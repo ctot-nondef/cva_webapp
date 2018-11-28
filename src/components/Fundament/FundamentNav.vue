@@ -117,15 +117,6 @@
         </v-btn>
       </v-toolbar>
     </transition>
-    <v-navigation-drawer
-      :right="true"
-      v-model="$store.state.app.rightDrawer"
-      enable-resize-watcher
-      app
-      >
-      <router-view name="rightdrawertop"></router-view>
-      <router-view name="rightdrawerbottom"></router-view>
-    </v-navigation-drawer>
   </div>
 </template>
 
